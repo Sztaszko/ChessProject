@@ -1,11 +1,9 @@
-
+from utils import VALID_COLORS
 
 class Player():
-    VALID_COLORS = ["white", "black"]
-
     def __init__(self, color) -> None:
 
-        if color not in self.VALID_COLORS:
+        if color not in VALID_COLORS:
             raise ValueError("Invalid color")
         self.color = color
 
