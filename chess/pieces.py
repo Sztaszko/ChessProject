@@ -9,9 +9,6 @@ class Piece():
     def validate_move(self, start_pos, end_pos,):
         raise NotImplementedError("Subclass must implement, this is an abstract method")
     
-    def symbol(self) -> str: #TODO consider adding a square clas or smth for printing, not use the Piece to print
-        return str("[ ]")
-    
     def _is_in_board(self, end_pos) -> bool:
         return end_pos[0] < 8 and end_pos[1] < 8 and end_pos[0] >= 0 and end_pos[1] >= 0
     
@@ -29,8 +26,6 @@ class Pawn(Piece):
             else: return False
         return False
     
-    def symbol(self) -> str:
-        return str(" P ")
     
 class Rook(Piece):
     def validate_move(self, start_pos, end_pos):
@@ -44,8 +39,6 @@ class Rook(Piece):
 
         return False
     
-    def symbol(self) -> str:
-        return str(" R ")
     
 class Knight(Piece):
     
@@ -54,17 +47,15 @@ class Knight(Piece):
         return str(" N ")
     
 class Bishop(Piece):
-
-    def symbol(self) -> str:
-        return str(" B ")
+    def __init__(self, color) -> None:
+        super().__init__(color)
+    
     
 
 class Queen(Piece):
-
-    def symbol(self) -> str:
-        return str(" Q ")
+    def __init__(self, color) -> None:
+        super().__init__(color)
     
 class King(Piece):
-
-    def symbol(self) -> str:
-        return str(" K ")
+    def __init__(self, color) -> None:
+        super().__init__(color)
