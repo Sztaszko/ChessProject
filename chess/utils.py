@@ -1,1 +1,1 @@
-VALID_COLORS = ["white", "black"]
+VALID_COLORS = ["white", "black", "none"]
