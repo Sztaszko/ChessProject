@@ -9,7 +9,7 @@ class Piece():
     def validate_move(self, start_pos, end_pos,):
         raise NotImplementedError("Subclass must implement, this is an abstract method")
     
-    def symbol(self) -> str:
+    def symbol(self) -> str: #TODO consider adding a square clas or smth for printing, not use the Piece to print
         return str("[ ]")
     
     def _is_in_board(self, end_pos) -> bool:

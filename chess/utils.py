@@ -1,1 +1,1 @@
-VALID_COLORS = ["white", "black", "none"]
+VALID_COLORS = ["white", "black", "none"] #TODO the color should be color - it shouldn't be used as a functionality to print pieces symbols.
