@@ -21,6 +21,7 @@ class Pawn(Piece):
         if super()._is_in_board(end_pos):
             #TODO
             #add the en passant and the first move
+            #and what with black moves??
             if end_pos[0] == start_pos[0] and end_pos[1] == start_pos[1]+1: #normal movement
                 return True
             elif end_pos[1] == start_pos[1]+1 and (end_pos[0] == start_pos[0]+1 or end_pos[0] == start_pos[0]-1): #taking a piece
@@ -43,7 +44,7 @@ class Rook(Piece):
 class Knight(Piece):
     def validate_move(self, start_pos, end_pos):
         if super()._is_in_board(end_pos):
-            if ((end_pos[0] == start_pos[0]+2 and end_pos[1] != start_pos[1]+1)
+            if ((end_pos[0] == start_pos[0]+2 and end_pos[1] != start_pos[1]+1) # TODO this can be replaced with difference and absolute value
                 or (end_pos[0] == start_pos[0]+2 and end_pos[1] != start_pos[1]-1) 
                 or (end_pos[0] == start_pos[0]-2 and end_pos[1] != start_pos[1]+1)
                 or (end_pos[0] == start_pos[0]-2 and end_pos[1] != start_pos[1]-1)
