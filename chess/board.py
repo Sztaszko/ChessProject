@@ -50,11 +50,16 @@ class Board():
             print(" ".join(square.symbol() for square in row))
     
     def move_piece(self, start_pos, end_pos) -> bool:
-        if end_pos[0] > 7 or end_pos[1] > 7 or end_pos[0] < 0 or end_pos[1] < 0:
+        start_pos_x = start_pos[0]
+        start_pos_y = start_pos[1]
+        end_pos_x = end_pos[0]
+        end_pos_y = end_pos[1]
+
+        if end_pos_x > 7 or end_pos_y > 7 or end_pos_x < 0 or end_pos_y < 0:
             print("Position out of range")
             return False
         
-        moved_piece : Piece = self.chessboard[start_pos[0]][start_pos[1]].piece
+        moved_piece : Piece = self.chessboard[start_pos_x][start_pos_y].piece
 
         if moved_piece is None:
             print("No piece on the square")
@@ -64,16 +69,16 @@ class Board():
             print("Movement not valid")
             return False
         
-        if self.chessboard[end_pos[0]][end_pos[1]].piece is not None:
-            if self.chessboard[end_pos[0]][end_pos[1]].piece.color != moved_piece.color:
+        if self.chessboard[end_pos_x][end_pos_y].piece is not None:
+            if self.chessboard[end_pos_x][end_pos_y].piece.color != moved_piece.color:
                 print("Taking a piece")
             else: 
                 print("Can't take your own piece")
                 return False
         
         print("Movement valid")
-        self.chessboard[end_pos[0]][end_pos[1]].piece = moved_piece
-        self.chessboard[start_pos[0]][start_pos[1]].piece = None
+        self.chessboard[end_pos_x][end_pos_y].piece = moved_piece
+        self.chessboard[start_pos_x][start_pos_y].piece = None
         #TODO add analysis of the movement path 
 
         return True
