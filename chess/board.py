@@ -29,7 +29,7 @@ class Board():
         
         #black pieces
         for square in self.chessboard[6]:
-            square.set_piece(Pawn('white'))
+            square.set_piece(Pawn('black'))
 
         idx = 0
         for square in self.chessboard[7]:
@@ -49,8 +49,35 @@ class Board():
         for row in reversed(self.chessboard):
             print(" ".join(square.symbol() for square in row))
     
-    def move_piece(self, start_pos, end_pos):
-        pass
+    def move_piece(self, start_pos, end_pos) -> bool:
+        if end_pos[0] > 7 or end_pos[1] > 7 or end_pos[0] < 0 or end_pos[1] < 0:
+            print("Position out of range")
+            return False
+        
+        moved_piece : Piece = self.chessboard[start_pos[0]][start_pos[1]].piece
+
+        if moved_piece is None:
+            print("No piece on the square")
+            return False
+        
+        if not moved_piece.validate_move(start_pos, end_pos):
+            print("Movement not valid")
+            return False
+        
+        if self.chessboard[end_pos[0]][end_pos[1]].piece is not None:
+            if self.chessboard[end_pos[0]][end_pos[1]].piece.color != moved_piece.color:
+                print("Taking a piece")
+            else: 
+                print("Can't take your own piece")
+                return False
+        
+        print("Movement valid")
+        self.chessboard[end_pos[0]][end_pos[1]].piece = moved_piece
+        self.chessboard[start_pos[0]][start_pos[1]].piece = None
+        #TODO add analysis of the movement path 
+
+        return True
+        
 
 
 class Square():
