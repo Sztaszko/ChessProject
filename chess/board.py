@@ -59,6 +59,10 @@ class Board():
             print("Position out of range")
             return False
         
+        if end_pos == start_pos:
+            print("This is the same position")
+            return False
+        
         moved_piece : Piece = self.chessboard[start_pos_x][start_pos_y].piece
 
         if moved_piece is None:
@@ -69,6 +73,14 @@ class Board():
             print("Movement not valid")
             return False
         
+        if not isinstance(moved_piece, Knight):
+            movement_path = moved_piece.get_movement_path(start_pos, end_pos)
+            for sq in movement_path:
+                if self.chessboard[sq[0]][sq[1]].piece != None:
+                    print("There is a piece on the path")
+                    return False
+        
+
         if self.chessboard[end_pos_x][end_pos_y].piece is not None:
             if self.chessboard[end_pos_x][end_pos_y].piece.color != moved_piece.color:
                 print("Taking a piece")
@@ -76,10 +88,12 @@ class Board():
                 print("Can't take your own piece")
                 return False
         
+
+        
+
         print("Movement valid")
         self.chessboard[end_pos_x][end_pos_y].piece = moved_piece
         self.chessboard[start_pos_x][start_pos_y].piece = None
-        #TODO add analysis of the movement path 
 
         return True
         
