@@ -88,9 +88,6 @@ class Board():
                 print("Can't take your own piece")
                 return False
         
-
-        
-
         print("Movement valid")
         self.chessboard[end_pos_x][end_pos_y].piece = moved_piece
         self.chessboard[start_pos_x][start_pos_y].piece = None
